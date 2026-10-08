@@ -16,12 +16,16 @@
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top">Brikama Methodist Academy</a>
-    <button class="toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <button class="toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="menu">
+      <span class="toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Menu</span>
+    </button>
     <div class="menu" id="menu">
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#staff">Staff</a>
       <a href="#contact">Contact</a>
+      <a class="sign-in" href="salmon-ferret-965418.hostingersite.com">Sign in</a>
       <a class="cta" href="register.html">Register</a>
     </div>
   </div>
@@ -163,6 +167,13 @@
     toggle.setAttribute('aria-expanded', open);
   });
   menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', false); } });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+      toggle.focus();
+    }
+  });
 
   // Opens the visitor's email app with the message filled in
   document.getElementById('contact-form').addEventListener('submit', e => {
